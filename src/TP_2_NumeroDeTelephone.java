@@ -1,15 +1,22 @@
 import clavier.In;
-
+@SuppressWarnings("ALL")
 public class TP_2_NumeroDeTelephone {
     public static void main(String[] args) {
-        String numero = null, indicatif = null, laZoneDepartementale = null;
-        String region = null, zone = null, operateur = null;
+        String numero = null, indicatif = null, laZoneDepartementale = null, numeroPayant = null, indicatifPays = null, indicatifPays2 = null;
+        String region = null, zone = null, operateur = null, typeAppele = null, leTaxe = null, lePays = null;
 
         System.out.print("Entrez votre numero: ");
-        numero = new String(In.readString());
+        numero = In.readString();
+
+        if (numero.substring(0, 3).equals("+33")) {
+            numero = "0" + numero.substring(3);
+        }
+
         indicatif = new String(numero.substring(0, 2));
         laZoneDepartementale = new String(numero.substring(0, 4));
-
+        numeroPayant = new String(numero.substring(0, 3));
+        indicatifPays = new String(numero.substring(0, 2));
+        indicatifPays2 = new String(numero.substring(0, 3));
 
         switch (indicatif) {
             case "01":
@@ -95,8 +102,6 @@ public class TP_2_NumeroDeTelephone {
             case "0594":
                 zone = new String("Guyane");
                 break;
-        }
-        switch (laZoneDepartementale) {
             case "0601":
                 operateur = new String("Neuf Cegetel");
                 break;
@@ -180,14 +185,98 @@ public class TP_2_NumeroDeTelephone {
             case "0699":
                 operateur = new String("Bouygues Telecom");
                 break;
+            case "0800":
+            case "0801":
+            case "0802":
+            case "0803":
+            case "0804":
+            case "0805":
+                typeAppele = new String("Gratuit, le numero vert");
+                break;
+            case "0806":
+            case "0807":
+            case "0808":
+            case "0809":
+                typeAppele = new String("Gratuit");
+                break;
         }
 
-        if (indicatif.equals("06")) {
-            System.out.print("Votre operateur: " + operateur);
-        } else if (indicatif.equals("07")) {
-            System.out.print("C'est un numero portable");
+        switch (numeroPayant) {
+            case "081":
+                leTaxe = new String("6 centimes d’euros la minute, ou 15 centimes d’euros l’appel");
+                break;
+            case "082":
+                leTaxe = new String("20 centimes d’euro par minute, ou 50 centimes d’euros par appel");
+                break;
+            case "089":
+                leTaxe = new String("80 centimes d’euros par minute ou 3 euros par appel");
+                break;
+        }
+
+        switch (indicatifPays) {
+            case "+1":
+                lePays = new String("Etats-Unis");
+                break;
+            case "+7":
+                lePays = new String("Kazakhstan");
+                break;
+        }
+
+        switch (indicatifPays2) {
+            case "+20":
+                lePays = new String("Egypt");
+                break;
+            case "+27":
+                lePays = new String("Afrique du Sud");
+                break;
+            case "+30":
+                lePays = new String("Grece");
+                break;
+            case "+31":
+                lePays = new String("Pays-Bas");
+                break;
+            case "+32":
+                lePays = new String("Belgique");
+                break;
+            case "+34":
+                lePays = new String("Espagne");
+                break;
+            case "+36":
+                lePays = new String("Hongrie");
+                break;
+            case "+39":
+                lePays = new String("Italie");
+                break;
+            case "+40":
+                lePays = new String("Roumanie");
+                break;
+            case "+41":
+                lePays = new String("Suisse");
+                break;
+            case "+44":
+                lePays = new String("Royaumme-Uni");
+                break;
+        }
+        System.out.println("Votre numero est: " + numero);
+
+        if (numero.charAt(0) == '0') {
+            System.out.println("Votre pays est France");
+            System.out.println("Le format local de votre numero: " + numero);
+            System.out.println("Le format international de votre numero: +33" + numero.substring(1));
+
+            if (indicatif.equals("06")) {
+                System.out.print("Votre operateur: " + operateur);
+            } else if (indicatif.equals("07")) {
+                System.out.print("C'est un numero portable");
+            } else if (numero.substring(0, 3).equals("080")) {
+                System.out.print("Votre type d'appele: " + typeAppele);
+            } else if (numeroPayant.substring(0, 2).equals("08")) {
+                System.out.print("Votre taxe est " + leTaxe);
+            } else {
+                System.out.print("Vous etes dans la region " + region + ". Votre zone est: " + zone);
+            }
         } else {
-            System.out.print("Vous etes dans la region " + region + ". Votre zone est: " + zone);
+            System.out.print("Votre pays est " + lePays);
         }
     }
 }
