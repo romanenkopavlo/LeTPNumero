@@ -2,7 +2,7 @@ import clavier.In;
 @SuppressWarnings("ALL")
 public class TP_2_NumeroDeTelephone {
     public static void main(String[] args) {
-        String numero = null, indicatif = null, laZoneDepartementale = null, numeroPayant = null, indicatifPays = null, indicatifPays2 = null;
+        String numero = null, indicatif = null, laZoneDepartementale = null, numeroPayant = null, indicatifPays = null, indicatifPaysDeuxChiffres = null;
         String region = null, zone = null, operateur = null, typeAppele = null, leTaxe = null, lePays = null;
 
         System.out.print("Entrez votre numero: ");
@@ -16,7 +16,7 @@ public class TP_2_NumeroDeTelephone {
         laZoneDepartementale = new String(numero.substring(0, 4));
         numeroPayant = new String(numero.substring(0, 3));
         indicatifPays = new String(numero.substring(0, 2));
-        indicatifPays2 = new String(numero.substring(0, 3));
+        indicatifPaysDeuxChiffres = new String(numero.substring(0, 3));
 
         switch (indicatif) {
             case "01":
@@ -222,7 +222,7 @@ public class TP_2_NumeroDeTelephone {
                 break;
         }
 
-        switch (indicatifPays2) {
+        switch (indicatifPaysDeuxChiffres) {
             case "+20":
                 lePays = new String("Egypt");
                 break;
