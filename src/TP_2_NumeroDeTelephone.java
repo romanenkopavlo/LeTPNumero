@@ -264,13 +264,13 @@ public class TP_2_NumeroDeTelephone {
             System.out.println("Le format local de votre numero: " + numero);
             System.out.println("Le format international de votre numero: +33" + numero.substring(1));
 
-            if (indicatif.equals("06")) {
+            if (numero.substring(0, 2).equals("06")) {
                 System.out.print("Votre operateur: " + operateur);
-            } else if (indicatif.equals("07")) {
+            } else if (numero.substring(0, 2).equals("07")) {
                 System.out.print("C'est un numero portable");
             } else if (numero.substring(0, 3).equals("080")) {
                 System.out.print("Votre type d'appele: " + typeAppele);
-            } else if (numeroPayant.substring(0, 2).equals("08")) {
+            } else if (numero.substring(0, 2).equals("08")) {
                 System.out.print("Votre taxe est " + leTaxe);
             } else {
                 System.out.print("Vous etes dans la region " + region + ". Votre zone est: " + zone);
